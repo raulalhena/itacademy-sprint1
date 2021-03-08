@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        let arr = ['A', 'L', 'E', 'J', 'A', 'N', 'D', 'R', 'O'];
+        let map = new Map();
+
+        for(let i = 0 ; i < arr.length ; i++){
+           if(map.has(arr[i])){
+               let index = map.get(arr[i]);
+               map.set(arr[i], index + 1);
+           }else{
+               map.set(arr[i], 1);
+           }
+        }
+
+        console.log(map);
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 3 Map</title>
+</head>
+<body>
+    
+</body>
+</html>
