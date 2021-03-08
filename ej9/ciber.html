@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script lang="javascript">
+        let operador = 'divisio', num1 = 10, num2 = 0;
+        let res = calculadora(operador, num1, num2);
+        
+        if(res != null){
+            console.log(`El resultat ${operador} de ${num1} i ${num2} es = ${res}.`);
+        }
+
+        function calculadora(operador, num1, num2){
+            switch(operador){
+                case 'suma':
+                    return num1 + num2;
+                case 'resta':
+                    return num1 - num2;
+                case 'multiplicacio':
+                    return num1 * num2;
+                case 'divisio':
+                    if(num2 != 0){
+                        return num1 / num2;
+                    }else{
+                        console.log(`El valor del segón número no pot ser 0`);
+                        return null;
+                    }
+                default:
+                    console.log(`Els operadors valids son: suma, resta, multiplicacio i divisio`);
+                    return null;
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 9</title>
+</head>
+<body>
+    
+</body>
+</html>
