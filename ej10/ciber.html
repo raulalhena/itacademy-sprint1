@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script lang="javascript">
+        function calculadora(){
+            if(document.getElementById("num1").value === "" || document.getElementById("num2").value === ""){
+                alert("Has d'omplir els dos camps amb valors numerics per poder operar.");
+            }else{
+                let sel = document.getElementById("operador");
+                let operador = sel.options[sel.selectedIndex].value;
+
+                let num1 = parseInt(document.getElementById("num1").value);
+                let num2 = parseInt(document.getElementById("num2").value);
+
+                
+                switch(operador){
+                    case 'suma':
+                        document.getElementById("resultado").value = num1 + num2;
+                        break;
+                    case 'resta':
+                        document.getElementById("resultado").value = num1 - num2;
+                        break;
+                    case 'multiplicacio':
+                        document.getElementById("resultado").value = num1 * num2;
+                        break;
+                    case 'divisio':
+                        if(num2 != 0){
+                            document.getElementById("resultado").value = num1 / num2;
+                        }else{
+                            alert(`No es pot dividir per 0`);
+                        }
+                }
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 10</title>
+</head>
+<body style="text-align: center;">
+    <div style="width: 60%;margin-left: 20%;margin-top: 10%">
+        <p class="fw-bold"> Introdueix els números i escolleig l'operació a realitzar: </p>
+        <input type="number" class="form-control" name="num1" id="num1" placeholder="Número 1">
+        <select name="operador" class="form-select" id="operador">
+            <option value="suma">Suma</option>
+            <option value="resta">Resta</option>
+            <option value="multiplicacio">Multiplicació</option>
+            <option value="divisio">Divisió</option>
+        </select>
+        <input type="number" class="form-control" name="num2" id="num2" placeholder="Número 2">
+        <br>
+        <input type="text" id="resultado" class="form-control" placeholder="Resultat" disabled>
+        <br>
+        <button class="btn btn-primary" onclick="calculadora()">Calcula</button>
+    </div>
+</body>
+</html>
