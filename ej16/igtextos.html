@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script>
+
+        function muestraLetras(){
+            let nombre = document.getElementById("nombre").value;
+
+            const arr = nombre.split("");
+            
+            document.getElementById("tagResultado").innerHTML = "<b>Resultado:</b> (Letras separadas en un Array)";
+            muestraContenido(arr,true);
+        }
+
+        function diferenciaTipos(){
+            let nombre = document.getElementById("nombre").value;
+            nombre = nombre.toUpperCase();
+
+            let arr = nombre.split("");
+            let map = new Map();
+
+            for(let i = 0 ; i < arr.length ; i++){ 
+                if(arr[i] == 'A' || arr[i] == 'E' || arr[i] == 'I' || arr[i] == 'O' || arr[i] == 'U'){
+                    map.set(arr[i], "V");
+                }else if(!isNaN(arr[i])){
+                    map.set(arr[i], "N");
+                }else{
+                    map.set(arr[i], "C" ); ;
+                }
+            }
+            document.getElementById("tagResultado").innerHTML = "<b>Resultado:</b> (C = Consonante | V = Vocal | N = Numero)";
+            muestraContenido(map,false);
+        }
+
+        function cuentaLetras(){
+            let nombre = document.getElementById("nombre").value;
+
+            const arr = nombre.split("");
+            let map = new Map();
+
+            for(let i = 0 ; i < arr.length ; i++){
+                if(map.has(arr[i])){
+                    let index = map.get(arr[i]);
+                    map.set(arr[i], index + 1);
+                }else{
+                    map.set(arr[i], 1);
+                }
+            }
+            document.getElementById("tagResultado").innerHTML = "<b>Resultado:</b> (Número de repeticiones de cada letra)";
+            muestraContenido(map,false);
+        }
+
+        function uneNombre(){
+            let nom = document.getElementById("nombre").value;
+            let ape = document.getElementById("apellido").value;
+
+            let nombre = nom.split("");
+            let apellido = ape.split("");
+            nombre.push(" ");
+
+            for(let i = 0 ; i < apellido.length ; i++){
+                nombre.push(apellido[i]);
+            }
+            document.getElementById("tagResultado").innerHTML = "<b>Resultado:</b> (Une Nombre y Apellido en Array y separa las letras)";
+            muestraContenido(nombre,true);
+        }
+
+        function extraeEmail(){
+            let txt3 = [], txt2 = [];
+            let txt = document.getElementById("texto").value;
+            
+            
+            
+            txt2 = txt.match(/[a-zA-z0-9._-]+@[a-zA-z0-9._-]+\.[a-zA-z]+/g);
+            txt2.forEach(item => {  
+                if(!txt3.includes(item)){
+                    txt3.push(item);
+                }  
+            })
+            document.getElementById("tagResultado").innerHTML = "<b>Resultado:</b> (Direcciones de Email válidas encontradas en el texto)";
+            muestraContenido(txt3,true);
+        }
+
+        function muestraContenido(valor,flag){
+            document.getElementById("resultado").innerHTML = "";
+            let parrafo = document.createElement("p");
+            if(flag){
+                let contenido = document.createTextNode(valor);
+                parrafo.appendChild(contenido);
+                document.getElementById("resultado").appendChild(parrafo);
+            }else{
+                valor.forEach((c, v) => {
+                    let contenido = document.createTextNode(`${c} -> ${v} `);
+                    parrafo.appendChild(contenido);
+                    document.getElementById("resultado").appendChild(parrafo);
+                })
+            }
+        }
+
+        function borraContenido(){
+            document.getElementById("tagResultado").innerHTML = "<b>Resultado:</b>";
+            document.getElementById("resultado").innerHTML = "";
+            document.getElementById("nombre").value = "";
+            document.getElementById("apellido").value = "";
+            document.getElementById("texto").value = "";
+        }
+       
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 6 Nivell 3 GUI textos</title>
+</head>
+<body style="text-align: center;">
+    <div style="width: 60%;margin-left: 20%;margin-top: 3%">
+        <p class="fw-bold"> Introduce los textos para obtener los resultados: </p>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre">
+            <label for="nombre">Nombre</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido">
+            <label for="apellido">Apellido</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <textarea name="" class="form-control" style="height: 150px;" id="texto" cols="30" rows="10" placeholder="Texto donde extraer las direcciones de email"></textarea>
+            <label for="texto">Texto donde extraer las direcciones de email</label>
+        </div>
+        <br>
+        <div class="container" style="align-content: center;">
+            <label class="fw-bold" id="tagResultado">Resultado: </label>
+            <div class="border border-success rounded-1 col-4" style="width: 100%;height: 150px;">
+               <label id="resultado"></label>
+            </div>
+        </div>   
+        <br>
+        <br>
+        <button class="btn btn-primary" onclick="muestraLetras()">Muestra Letras</button> 
+        <button class="btn btn-primary" onclick="diferenciaTipos()">Diferencia Letras</button>
+        <button class="btn btn-primary" onclick="uneNombre()">Une Nombre y Apellido</button>
+        <button class="btn btn-primary" onclick="cuentaLetras()">Cuenta Letras</button>
+        <button class="btn btn-primary" onclick="extraeEmail()">Extrae Email</button>
+        <button class="btn btn-danger" onclick="borraContenido()">Borrar</button>
+    </div>
+</body>
+</html>
