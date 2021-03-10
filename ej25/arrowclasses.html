@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+
+        let miObj, miObj2, miObj;
+
+        miObj = newObject('Raül', 'López', 'Male');
+        miObj2 = new newObject('Raül', 'López', 'Male');
+        miObj3 = newObject.call(miObj3, 'Raül', 'López', 'Male');
+
+        console.log(miObj);
+        console.log(miObj2);
+        console.log(miObj3);
+
+        function newObject(name, surname, gender){
+            this.name = name;
+            this.surname = surname;
+            this.gender = gender;
+            return this;
+        }
+        
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 5 Funcion creadora de objetos Nivel 3</title>
+</head>
+<body>
+    
+</body>
+</html>
