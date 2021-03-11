@@ -1,6 +1,6 @@
 /* Promises & Callbacks
 *
-* Nivel 2 y 3 Ej 3 y 1. Fusionados ya que ya lo había implementado en los anteriores ejercicios.
+* Nivel 2 Ej 1
 *
 */
 
@@ -35,31 +35,13 @@ let getEmpleado = (employees, _id) => {
                 }
             });
         }else{
-            rej("No se han encontrado los datos de Empleados.");
-        }
-    });
-}
-
-let getSalario = (myEmployee, salaries) => {
-    return new Promise((res, rej) => {
-        if(myEmployee != null && salaries != null){
-            salaries.forEach(salary => {
-                if(myEmployee.id == salary.id){
-                    res(salary);
-                }
-            });
-        }else{
-            rej("No se han encontrado los datos de Salarios.");
+            rej("No se han encontrado los datos.");
         }
     });
 }
 
 getEmpleado(employees, 1)
-    .then(myEmployee => {
+    .then((myEmployee) => {
             console.log(`El empleado es: ${myEmployee.name}`);
-            return getSalario(myEmployee, salaries);
-    })
-    .then(mySalary => {
-        console.log(`El salario es: ${mySalary.salary}`);
     })
     .catch(err => console.log(err));
